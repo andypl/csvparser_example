@@ -3,6 +3,8 @@ package pl.info.czerniak.csvparser.database;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.postgresql.PGConnection;
+import org.postgresql.jdbc.PgConnection;
+
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -23,10 +25,6 @@ public class ConnectionManager {
 
     public Connection getConnection() throws SQLException {
         return dataSource.getConnection();
-    }
-
-    public PGConnection getPGConnection() throws SQLException {
-        return dataSource.getConnection().unwrap(PGConnection.class);
     }
 
     public void close(){
