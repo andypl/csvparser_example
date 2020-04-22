@@ -12,6 +12,8 @@ public class CSVFileSpec {
     private Charset charset;
     private CSVFormat csvFormat;
 
+    private CSVFileSpec (){}
+
     public static final class Builder{
         private List<String> headerList;
         private long colCount;
