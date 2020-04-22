@@ -2,8 +2,10 @@ package pl.info.czerniak.csvparser.parser2;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import pl.info.czerniak.csvparser.exception.CSVHeaderMismatchException;
 import pl.info.czerniak.csvparser.exception.EmptyFileException;
+import pl.info.czerniak.csvparser.exception.IncorrectColNumberFileException;
 import pl.info.czerniak.csvparser.validators.FileValidator;
 
 import java.io.File;
@@ -23,29 +25,18 @@ public class CSVValidator {
     private File file;
     private CSVParser csvParser;
 
-    public CSVValidator(long colsNumber, boolean header, CSVFormat csvFormat, String fileName, List<String> headerList) throws CSVHeaderMismatchException {
-        this.colsNumber = colsNumber;
-        this.header = header;
+    public CSVValidator(CSVFormat csvFormat, String fileName, List<String> headerList) throws CSVHeaderMismatchException, IncorrectColNumberFileException {
         this.csvFormat = csvFormat;
         this.fileName = fileName;
         this.colsHeaderNames = headerList;
         init();
     }
 
-    public void init() throws CSVHeaderMismatchException {
+    public void init() throws CSVHeaderMismatchException, IncorrectColNumberFileException {
         initializeFile();
         initializeParser();
         validateHeader();
-    }
-
-    private void validateHeader() throws CSVHeaderMismatchException {
-        if(this.header != csvParser.getHeaderNames().isEmpty()) {
-            throw new CSVHeaderMismatchException("File header: " + csvParser.getHeaderNames().toString() + "Typed: " + this.colsHeaderNames.toString());
-        }
-    }
-
-    private boolean validateColumnNumbers(){
-        return false;
+        validateCSVRecords();
     }
 
     private void initializeFile(){
@@ -66,5 +57,22 @@ public class CSVValidator {
             System.out.println(e.getMessage());
         }
         System.err.println("Parser initialized!");
+    }
+
+    private void validateHeader() throws CSVHeaderMismatchException {
+        if(!this.colsHeaderNames.equals(csvParser.getHeaderNames())){
+            throw new CSVHeaderMismatchException("CSVHeader: " + csvParser.getHeaderNames() + "Header: " + this.colsHeaderNames);
+        }
+    }
+
+    private void validateCSVRecords() throws IncorrectColNumberFileException {
+        int recordSum = 0;
+        for(CSVRecord record : csvParser){
+            if(!record.isConsistent()){
+                throw new IncorrectColNumberFileException("Record number: " + record.getRecordNumber());
+            }
+            recordSum++;
+        }
+        System.err.println("Records validation compleated. Validated: " + recordSum + "records.");
     }
 }
