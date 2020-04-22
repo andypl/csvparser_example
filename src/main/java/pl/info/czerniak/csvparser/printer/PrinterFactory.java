@@ -1,6 +1,6 @@
 package pl.info.czerniak.csvparser.printer;
 
-import pl.info.czerniak.csvparser.parser.FactoryType;
+import pl.info.czerniak.csvparser.old_parsers.parser.FactoryType;
 
 import javax.naming.directory.NoSuchAttributeException;
 
