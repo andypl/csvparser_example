@@ -2,8 +2,8 @@ package pl.info.czerniak.csvparser.service;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
-import pl.info.czerniak.csvparser.parser3.CSVFileParserImpl;
-import pl.info.czerniak.csvparser.parser3.CSVFileSpec;
+import pl.info.czerniak.csvparser.parser.CSVFileParserImpl;
+import pl.info.czerniak.csvparser.parser.CSVFileSpec;
 
 import java.nio.charset.Charset;
 import java.util.List;

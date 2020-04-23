@@ -4,7 +4,6 @@ import pl.info.czerniak.csvparser.converter.ConverterImpl;
 import pl.info.czerniak.csvparser.dao.DatabaseManager;
 import pl.info.czerniak.csvparser.database.ConnectionManager;
 import pl.info.czerniak.csvparser.exception.IncorrectColNumberFileException;
-import pl.info.czerniak.csvparser.parser3.CSVFileParserImpl;
 import pl.info.czerniak.csvparser.service.ParserService;
 
 import javax.management.AttributeNotFoundException;

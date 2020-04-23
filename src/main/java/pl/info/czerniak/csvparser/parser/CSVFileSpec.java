@@ -1,4 +1,4 @@
-package pl.info.czerniak.csvparser.parser3;
+package pl.info.czerniak.csvparser.parser;
 
 import org.apache.commons.csv.CSVFormat;
 

@@ -1,6 +1,4 @@
-package pl.info.czerniak.csvparser.parser3;
-
-import org.apache.commons.csv.CSVParser;
+package pl.info.czerniak.csvparser.parser;
 
 import java.io.IOException;
 
