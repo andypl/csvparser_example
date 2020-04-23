@@ -5,12 +5,31 @@ import org.apache.commons.csv.CSVFormat;
 import java.nio.charset.Charset;
 import java.util.List;
 
+/**
+ * This class store csv file specification like charset, csv format.
+ */
 public class CSVFileSpec {
 
     private List<String> headerList;
     private long colCount;
     private Charset charset;
     private CSVFormat csvFormat;
+
+    public List<String> getHeaderList() {
+        return headerList;
+    }
+
+    public long getColCount() {
+        return colCount;
+    }
+
+    public Charset getCharset() {
+        return charset;
+    }
+
+    public CSVFormat getCsvFormat() {
+        return csvFormat;
+    }
 
     private CSVFileSpec (){}
 
@@ -53,7 +72,7 @@ public class CSVFileSpec {
             csvFileSpec.colCount = this.colCount;
             csvFileSpec.charset = this.charset;
             csvFileSpec.csvFormat = this.csvFormat;
-            return new CSVFileSpec();
+            return csvFileSpec;
         }
     }
 }
