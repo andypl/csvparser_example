@@ -6,4 +6,8 @@ public class CSVHeaderMismatchException extends Exception {
     public CSVHeaderMismatchException(String message) {
         super(message);
     }
+
+    public CSVHeaderMismatchException(){
+        super();
+    }
 }
