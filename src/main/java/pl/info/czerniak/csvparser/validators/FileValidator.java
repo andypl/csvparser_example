@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.FileAlreadyExistsException;
 
+/**
+ * This class its a helper class. It validate input CSV file.
+ */
 public class FileValidator {
 
     private FileValidator() {}
@@ -19,7 +22,7 @@ public class FileValidator {
         }
         return file;
     }
-
+/*
     public static File validateOutputFile(String fileName) throws FileAlreadyExistsException {
         File file = new File(fileName);
         if(file.exists()){
@@ -27,4 +30,6 @@ public class FileValidator {
         }
         return file;
     }
+
+*/
 }
