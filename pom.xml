@@ -2,9 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>csvparser</artifactId>
+        <groupId>pl.info.czerniak.csvparser</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>pom.xml</relativePath>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pl.info.czerniak.csvparser</groupId>
+    <groupId>pl.info.czerniak</groupId>
     <artifactId>csvparser</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
@@ -42,5 +48,19 @@
             <version>1.7.30</version>
         </dependency>
     </dependencies>
+
+    <developers>
+        <developer>
+            <id>andy</id>
+            <name>Andrzej Czerniak</name>
+            <email>andrzej@czerniak.info.pl</email>
+            <url>http://czerniak.info.pl</url>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>Poland/Warsaw</timezone>
+        </developer>
+    </developers>
 
 </project>
