@@ -23,6 +23,13 @@ public class Printer {
     private Converter2 converter;
     private CSVParser csvParser;
 
+    /**
+     *
+     * @param csvParser Object that is linked into a CSV file.
+     * @param connection Connection to the PostgreSQL Database.
+     * @param converter Interface for converter.
+     * @throws SQLException
+     */
     public Printer(CSVParser csvParser, Connection connection, Converter2 converter) throws SQLException {
         this.csvParser = csvParser;
         this.databaseManager = new DatabaseManager(connection);
