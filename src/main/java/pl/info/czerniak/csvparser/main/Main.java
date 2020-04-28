@@ -1,9 +1,11 @@
 package pl.info.czerniak.csvparser.main;
 
+import pl.info.czerniak.csvparser.converter.Converter2Impl;
 import pl.info.czerniak.csvparser.converter.ConverterImpl;
 import pl.info.czerniak.csvparser.dao.DatabaseManager;
 import pl.info.czerniak.csvparser.database.ConnectionManager;
 import pl.info.czerniak.csvparser.exception.IncorrectColNumberFileException;
+import pl.info.czerniak.csvparser.printer.Printer;
 import pl.info.czerniak.csvparser.service.ParserService;
 
 import javax.management.AttributeNotFoundException;
@@ -24,10 +26,12 @@ public class Main {
                 .collect(Collectors.toList());
 
         ParserService parserService = new ParserService(inputFile, headerList);
+/*
         DatabaseManager databaseManager = new DatabaseManager(ConnectionManager.getInstance().getConnection());
         ConverterImpl converter = new ConverterImpl(parserService.getCSVParser(), databaseManager.getCopyIn());
         converter.convert();
-        System.out.println("Total rows in file: " + converter.getRows());
-        System.out.println("Rows converted: " + converter.getConvertedRows());
+*/
+        Printer printer = new Printer(parserService.getCSVParser(), ConnectionManager.getInstance().getConnection(), new Converter2Impl());
+        System.out.println("Printed rows to database: " + printer.print());
     }
 }
