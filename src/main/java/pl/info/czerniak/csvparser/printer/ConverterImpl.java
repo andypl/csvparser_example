@@ -1,4 +1,4 @@
-package pl.info.czerniak.csvparser.converter;
+package pl.info.czerniak.csvparser.printer;
 
 import org.apache.commons.csv.CSVRecord;
 
@@ -9,7 +9,7 @@ import java.util.UUID;
  * It will take only even rows and return 2, 3 column form
  * given csv file, and add column with auto generated UUID.
  */
-public class Converter2Impl implements Converter2 {
+public class ConverterImpl implements Converter {
 
     private CSVRecord record;
     private byte[] result;

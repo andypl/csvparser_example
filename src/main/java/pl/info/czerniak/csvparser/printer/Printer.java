@@ -3,8 +3,6 @@ package pl.info.czerniak.csvparser.printer;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.postgresql.copy.CopyIn;
-import pl.info.czerniak.csvparser.converter.Converter2;
-import pl.info.czerniak.csvparser.dao.DatabaseManager;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,7 +18,7 @@ public class Printer {
 
     private DatabaseManager databaseManager;
     private CopyIn copyIn;
-    private Converter2 converter;
+    private Converter converter;
     private CSVParser csvParser;
 
     /**
@@ -30,14 +28,14 @@ public class Printer {
      * @param converter Interface for converter.
      * @throws SQLException
      */
-    public Printer(CSVParser csvParser, Connection connection, Converter2 converter) throws SQLException {
+    Printer(CSVParser csvParser, Connection connection, Converter converter) throws SQLException {
         this.csvParser = csvParser;
         this.databaseManager = new DatabaseManager(connection);
         this.copyIn = databaseManager.getCopyIn();
         this.converter = converter;
     }
 
-    public long print() throws SQLException {
+    long print() throws SQLException {
         long rowConverted = 0;
             for(CSVRecord record : csvParser){
                 if(converter.isRowConvertable(record)){

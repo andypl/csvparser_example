@@ -1,4 +1,4 @@
-package pl.info.czerniak.csvparser.dao;
+package pl.info.czerniak.csvparser.printer;
 
 import org.postgresql.copy.CopyIn;
 import org.postgresql.copy.CopyManager;
@@ -20,14 +20,15 @@ public class DatabaseManager {
     CopyManager manager;
     CopyIn copyIn;
 
-    public DatabaseManager(Connection connection) throws SQLException {
+    //TODO Add argument for table name instead of hardcoded one.
+    DatabaseManager(Connection connection) throws SQLException {
         this.connection = connection;
         this.pgConnection = this.connection.unwrap(PgConnection.class);
         this.manager = new CopyManager(pgConnection);
         this.copyIn = manager.copyIn(POSTGRES_COPY_COMMAND);
     }
 
-    public CopyIn getCopyIn() {
+    CopyIn getCopyIn() {
         return this.copyIn;
     }
 }

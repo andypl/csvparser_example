@@ -1,4 +1,4 @@
-package pl.info.czerniak.csvparser.database;
+package pl.info.czerniak.csvparser.printer;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -15,6 +15,7 @@ public class ConnectionManager {
     private static ConnectionManager connectionManager;
     private HikariDataSource dataSource;
 
+    //TODO Move Hikari config to a properties.
     private ConnectionManager(){
         org.apache.log4j.BasicConfigurator.configure();
         HikariConfig config = new HikariConfig();
@@ -25,17 +26,17 @@ public class ConnectionManager {
         dataSource = new HikariDataSource(config);
     }
 
-    public Connection getConnection() throws SQLException {
+     Connection getConnection() throws SQLException {
         return dataSource.getConnection();
     }
 
-    public void close(){
+    void close(){
         if(dataSource != null){
             dataSource.close();
         }
     }
 
-    public static ConnectionManager getInstance(){
+    static ConnectionManager getInstance(){
         if(connectionManager == null){
             connectionManager = new ConnectionManager();
         }

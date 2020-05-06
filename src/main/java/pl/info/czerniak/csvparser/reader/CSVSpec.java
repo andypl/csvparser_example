@@ -1,4 +1,4 @@
-package pl.info.czerniak.csvparser.parser;
+package pl.info.czerniak.csvparser.reader;
 
 import org.apache.commons.csv.CSVFormat;
 
@@ -8,32 +8,32 @@ import java.util.List;
 /**
  * This class store csv file specification like charset, csv format.
  */
-public class CSVFileSpec {
+class CSVSpec {
 
     private List<String> headerList;
     private long colCount;
     private Charset charset;
     private CSVFormat csvFormat;
 
-    public List<String> getHeaderList() {
+    List<String> getHeaderList() {
         return headerList;
     }
 
-    public long getColCount() {
+    long getColCount() {
         return colCount;
     }
 
-    public Charset getCharset() {
+    Charset getCharset() {
         return charset;
     }
 
-    public CSVFormat getCsvFormat() {
+    CSVFormat getCsvFormat() {
         return csvFormat;
     }
 
-    private CSVFileSpec (){}
+    private CSVSpec(){}
 
-    public static final class Builder{
+    static final class Builder{
         private List<String> headerList;
         private long colCount;
         private Charset charset;
@@ -63,11 +63,11 @@ public class CSVFileSpec {
             return this;
         }
 
-        public CSVFileSpec build(){
+        public CSVSpec build(){
             if(headerList == null || colCount == 0 || charset == null || csvFormat == null){
                 throw new IllegalStateException("Missing argument");
             }
-            CSVFileSpec csvFileSpec = new CSVFileSpec();
+            CSVSpec csvFileSpec = new CSVSpec();
             csvFileSpec.headerList = this.headerList;
             csvFileSpec.colCount = this.colCount;
             csvFileSpec.charset = this.charset;

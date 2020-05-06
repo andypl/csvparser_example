@@ -1,11 +1,11 @@
-package pl.info.czerniak.csvparser.exception;
+package pl.info.czerniak.csvparser.reader;
 
 import java.io.IOException;
 
 public class EmptyFileException extends IOException {
     private static final long serialVersionUID = 1L;
 
-    public EmptyFileException(String s) {
+    EmptyFileException(String s) {
         super(s);
     }
 }
