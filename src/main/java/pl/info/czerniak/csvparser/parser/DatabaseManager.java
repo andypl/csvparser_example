@@ -1,4 +1,4 @@
-package pl.info.czerniak.csvparser.printer;
+package pl.info.czerniak.csvparser.parser;
 
 import org.postgresql.copy.CopyIn;
 import org.postgresql.copy.CopyManager;
@@ -8,19 +8,18 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * This class will act like a DAO layer.
- * It return an copyIn object for writing to postgres using COPY API.
+ * This class return an copyIn object for given connection object.
  */
-public class DatabaseManager {
+class DatabaseManager {
 
     private static final String POSTGRES_COPY_COMMAND = "COPY test FROM STDIN WITH DELIMITER ','";
 
-    PgConnection pgConnection;
-    Connection connection;
-    CopyManager manager;
-    CopyIn copyIn;
+    private PgConnection pgConnection;
+    private Connection connection;
+    private CopyManager manager;
+    private CopyIn copyIn;
 
-    //TODO Add argument for table name instead of hardcoded one.
+    //TODO Add argument for table name instead of using hardcoded one.
     DatabaseManager(Connection connection) throws SQLException {
         this.connection = connection;
         this.pgConnection = this.connection.unwrap(PgConnection.class);

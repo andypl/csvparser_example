@@ -1,4 +1,4 @@
-package pl.info.czerniak.csvparser.printer;
+package pl.info.czerniak.csvparser.parser;
 
 import org.apache.commons.csv.CSVRecord;
 

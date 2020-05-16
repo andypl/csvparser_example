@@ -1,6 +1,7 @@
-package pl.info.czerniak.csvparser.printer;
+package pl.info.czerniak.csvparser.converter;
 
 import org.apache.commons.csv.CSVRecord;
+import pl.info.czerniak.csvparser.parser.Converter;
 
 import java.util.UUID;
 

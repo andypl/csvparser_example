@@ -1,4 +1,4 @@
-package pl.info.czerniak.csvparser.printer;
+package pl.info.czerniak.csvparser.parser;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -10,19 +10,19 @@ import java.sql.SQLException;
  * This class provide datasource for Postgresql database. It will return connection from pool.
  * It use HikariCP library.
  */
-public class ConnectionManager {
+class ConnectionManager {
 
     private static ConnectionManager connectionManager;
     private HikariDataSource dataSource;
 
     //TODO Move Hikari config to a properties.
-    private ConnectionManager(){
+    private ConnectionManager(DatabaseConfig databaseConfig){
         org.apache.log4j.BasicConfigurator.configure();
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:postgresql://localhost:5432/csvparser_test");
-        config.setDriverClassName("org.postgresql.Driver");
-        config.setUsername("andy");
-        config.setPassword("andy");
+        config.setJdbcUrl(databaseConfig.getJdbcURL());
+        config.setDriverClassName(databaseConfig.getDriverClassName());
+        config.setUsername(databaseConfig.getUsername());
+        config.setPassword(databaseConfig.getPassword());
         dataSource = new HikariDataSource(config);
     }
 
@@ -36,9 +36,9 @@ public class ConnectionManager {
         }
     }
 
-    static ConnectionManager getInstance(){
+    static ConnectionManager getInstance(DatabaseConfig databaseConfig){
         if(connectionManager == null){
-            connectionManager = new ConnectionManager();
+            connectionManager = new ConnectionManager(databaseConfig);
         }
         return connectionManager;
     }
