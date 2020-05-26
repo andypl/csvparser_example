@@ -7,16 +7,16 @@ import org.postgresql.copy.CopyIn;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-class FileWriter {
+class FileWriter{
     private CSVParser csvParser;
-    private DatabaseManager databaseManager;
+    private CopyAPIManager copyAPIManager;
     private CopyIn copyIn;
     private Converter converter;
 
-    FileWriter(CSVParser csvParser, Connection connection, Converter converter) throws SQLException {
+    FileWriter(CSVParser csvParser, Connection connection, String sql, Converter converter) throws SQLException{
         this.csvParser = csvParser;
-        this.databaseManager = new DatabaseManager(connection);
-        this.copyIn = databaseManager.getCopyIn();
+        this.copyAPIManager = new CopyAPIManager(connection, sql);
+        this.copyIn = copyAPIManager.getCopyAPIForConnection();
         this.converter = converter;
     }
 
@@ -25,10 +25,18 @@ class FileWriter {
         for(CSVRecord record : csvParser){
             if(converter.isRowConvertable(record)){
                 converter.convert();
-                this.copyIn.writeToCopy(converter.getResult(),0,converter.getResult().length);
+                try {
+                    this.copyIn.writeToCopy(converter.getResult(),0,converter.getResult().length);
+                } catch (SQLException e) {
+                    throw new SQLException("Failed write " + record.getRecordNumber() + " record to database");
+                }
             }
         }
-        rowPrinted = copyIn.endCopy();
+        try {
+            rowPrinted = copyIn.endCopy();
+        } catch (SQLException e) {
+            throw new SQLException("Problem with ending writing operation!");
+        }
         return rowPrinted;
     }
 }
