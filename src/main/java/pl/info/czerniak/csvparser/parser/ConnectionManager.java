@@ -10,12 +10,11 @@ import java.sql.SQLException;
  * This class provide datasource for Postgresql database. It will return connection from pool.
  * It use HikariCP library.
  */
-class ConnectionManager {
+public class ConnectionManager {
 
     private static ConnectionManager connectionManager;
     private HikariDataSource dataSource;
 
-    //TODO Move Hikari config to a properties.
     private ConnectionManager(DatabaseConfig databaseConfig){
         org.apache.log4j.BasicConfigurator.configure();
         HikariConfig config = new HikariConfig();
@@ -26,7 +25,7 @@ class ConnectionManager {
         dataSource = new HikariDataSource(config);
     }
 
-     Connection getConnection() throws SQLException {
+     public Connection getConnection() throws SQLException {
         return dataSource.getConnection();
     }
 
@@ -36,7 +35,7 @@ class ConnectionManager {
         }
     }
 
-    static ConnectionManager getInstance(DatabaseConfig databaseConfig){
+    public static ConnectionManager getInstance(DatabaseConfig databaseConfig){
         if(connectionManager == null){
             connectionManager = new ConnectionManager(databaseConfig);
         }
