@@ -1,4 +1,4 @@
-package pl.info.czerniak.csvparser.parser;
+package pl.info.czerniak.csvparser.dbutils;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

@@ -1,4 +1,4 @@
-package pl.info.czerniak.csvparser.parser;
+package pl.info.czerniak.csvparser.dbutils;
 
 public class DatabaseConfig {
     private String jdbcURL;
