@@ -3,7 +3,6 @@ package pl.info.czerniak.csvparser.parser;
 import org.apache.commons.csv.CSVParser;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class ParserFacade {
     private String sql;
@@ -20,14 +19,10 @@ public class ParserFacade {
     }
 
    public long write(){
-       try {
-           this.fileWriter = new FileWriter(this.csvParser, this.connection, this.sql, this.converter);
-       } catch (SQLException e) {
-           System.err.println(e.getMessage());
-       }
+       this.fileWriter = new FileWriter(this.csvParser, this.connection, this.sql, this.converter);
        try {
            return fileWriter.write();
-       } catch (SQLException e) {
+       } catch (SQLWriteException | SQLEndCopyException e) {
            System.err.println(e.getMessage());
        }
        return 0;
