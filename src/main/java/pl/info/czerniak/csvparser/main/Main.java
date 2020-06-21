@@ -3,8 +3,8 @@ package pl.info.czerniak.csvparser.main;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import pl.info.czerniak.csvparser.converter.ConverterImpl;
-import pl.info.czerniak.csvparser.parser.ConnectionManager;
-import pl.info.czerniak.csvparser.parser.DatabaseConfig;
+import pl.info.czerniak.csvparser.dbutils.ConnectionManager;
+import pl.info.czerniak.csvparser.dbutils.DatabaseConfig;
 import pl.info.czerniak.csvparser.parser.ParserFacade;
 
 import java.io.File;
